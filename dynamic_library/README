@@ -1,0 +1,15 @@
+生成位置无关的.o文件
+gcc -c -fPIC stack/stack.c stack/push.c stack/pop.c stack/is_empty.c
+
+生成libstack.so
+gcc -shared -o libstack.so stack.o push.o pop.o is_empty.o
+
+编译main文件
+gcc -g main.c -L. -lstack -Istack
+
+将libstack.o的绝对路径添加到/etc/ld.so.conf中，然后运行
+sudo ldconfig -v
+
+
+动态库加载过程请看http://note.youdao.com/share/?id=1f5cfd3df8b0c0dfe4d0f9041fbd89ca&type=note
+
